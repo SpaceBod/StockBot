@@ -54,7 +54,7 @@ public class stockBot {
 
         Thread botService = new Thread() {
             public void run() {
-                GatewayDiscordClient client = DiscordClientBuilder.create("OTI2NDMwODM0MDQ5ODEwNDY0.Yc7j8w.gMULiKy5PVMEsrFF-ToIEvsdQzw").build().login().block();
+                GatewayDiscordClient client = DiscordClientBuilder.create(-- DISCORD TOKEN --).build().login().block();
                 client.getEventDispatcher().on(ReadyEvent.class)
                         .subscribe(event -> {
                             User self = event.getSelf();
