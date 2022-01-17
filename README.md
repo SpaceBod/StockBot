@@ -8,10 +8,11 @@ Therefore, I devloped a program that would alert real buyers the moment a GPU co
 
 Currently setup for NVIDIAs & AMDs GPU store pages. 
 
-Image of the alert:  
+The alert sent:  
 <img width="459" alt="Screenshot 2022-01-08 at 16 23 47" src="https://user-images.githubusercontent.com/26677677/148651774-36d37db4-8a4f-4e7d-b7f3-77b0cf547116.png">
 
-Image of the stock that is being checked:  
+Stock that is being checked:  
 <img width="437" alt="Screenshot 2022-01-08 at 16 24 14" src="https://user-images.githubusercontent.com/26677677/148651779-05368f53-305b-4d8e-a3cd-be5708b1f2f4.png">
 
-
+Log history of items selling out:  
+![add](https://user-images.githubusercontent.com/26677677/149810741-dd215678-8695-4775-af45-709d5808a886.png)
