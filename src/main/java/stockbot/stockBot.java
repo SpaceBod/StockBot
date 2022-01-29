@@ -1,17 +1,9 @@
 package stockbot;
 import discord4j.common.util.Snowflake;
-import io.netty.channel.ChannelId;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import java.lang.invoke.ConstantCallSite;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.chrome.ChromeOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.time.Duration;
@@ -30,7 +22,7 @@ import discord4j.core.object.entity.channel.*;
 import java.time.Instant;
 
 public class stockBot {
-    static String token = "Insert Token";
+    static String token = "INSERT OWN BOT TOKEN ID";
 
     static boolean run = false;
 
@@ -61,7 +53,7 @@ public class stockBot {
 
     public static void main(String[] args) {
 
-        WebDriverManager.chromedriver().driverVersion("96.0.4664.45").setup();
+        WebDriverManager.chromedriver().driverVersion("97.0.4692.99").setup();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy");
         stockBot bot = new stockBot();
 
@@ -148,7 +140,7 @@ public class stockBot {
                     options.addArguments("--headless");
                     options.addArguments("--disable-gpu");
                     options.addArguments("--no-sandbox");
-                    options.addArguments("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36");
+                    options.addArguments("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36");
                     String nvidiaURL = "https://store.nvidia.com/en-gb/geforce/store/gpu/?page=1&limit=9&locale=en-gb&gpu=RTX%203090,RTX%203080,RTX%203080%20Ti,RTX%203070%20Ti,RTX%203070,RTX%203060%20Ti&manufacturer=NVIDIA&category=GPU&category_filter=GPU~0,LAPTOP~0,STUDIO-LAPTOP~0,NVLINKS~0";
                     String amdURL = "https://www.amd.com/en/direct-buy/gb";
                     String amdLineURL = "inline.amd.com";
@@ -184,9 +176,8 @@ public class stockBot {
                             // Open AMD Store Page
                             driver.get(amdURL);
                             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-
                             // Gather AMD Element Text
-                            if (!driver.findElements(By.className("shop-title")).isEmpty()) {
+                            if (!driver.getCurrentUrl().contains(amdLineURL)) {
                                 List<WebElement> amdTitle = driver.findElements(By.className("shop-title"));
                                 List<WebElement> amdStock = driver.findElements(By.className("shop-links"));
                                 List<WebElement> amdPrice = driver.findElements(By.className("shop-price"));
@@ -218,6 +209,7 @@ public class stockBot {
 
                             }
                             else {
+                                System.out.println(driver.getCurrentUrl());
                                 if (driver.getCurrentUrl().contains(amdLineURL)) {
                                     amdInStock = true;
                                 }
@@ -276,7 +268,7 @@ public class stockBot {
                                 client.getChannelById(Snowflake.of("928056739482435614")).ofType(MessageChannel.class).flatMap(channel -> channel.createMessage(">>> " + amdFieldName + "\n" + "```" + lastAmdList + "```")).subscribe();
                                 amdInStock = false;
                                 amdTime = Instant.now().getEpochSecond();
-                                amdCoolDown = 600;
+                                amdCoolDown = 86400;
                             }
                             Thread.sleep(2500);
                         }
